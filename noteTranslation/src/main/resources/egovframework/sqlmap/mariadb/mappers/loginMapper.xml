@@ -2,11 +2,39 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="loginMapper">
 
-	<select id="selectMemberByAccount" parameterType="member" resultType="egovMap">
+	<select id="selectMemberByAccount" parameterType="member" resultType="member">
 		select *
 		  from note_user
 		 where user_email = #{user_email}
 		   and password = #{password}
 	</select>
+	
+	<select id="selectDuplicatedAccount" parameterType="member" resultType="str">
+		select use_yn
+		  from note_user
+		 where user_email = #{user_email}
+	</select>
+	
+	<select id="selectDuplicatedNickname" parameterType="member" resultType="str">
+		select use_yn
+		  from note_user
+		 where nickname = #{nickname}
+	</select>
+	
+	<update id="insertMember" parameterType="member">
+		insert into note_user(
+			USER_NO
+			,USER_EMAIL
+			,PASSWORD
+			,NICKNAME
+			,USE_YN
+		)values(
+			nextval(user_no_seq)
+			,#{user_email}
+			,#{password}
+			,#{nickname}
+			,'Y'
+		)
+	</update>
 
 </mapper>

@@ -21,11 +21,11 @@ function hidePassword(password){
 
 function loginGo(){
 	let email = document.querySelector('[name="user_email"]').value;
-	console.log(checkEmail(email));
-	if(checkEmail(email)){
+	//console.log(checkEmail(email));
+	if(checkRexEmail(email)){
 		let loginForm = $('[role="loginForm"]').serialize();
 		$.ajax({
-			url : '/login/login.do',
+			url : 'login/login.do',
 			data : loginForm,
 			method: 'post',
 			dataType : 'json',
@@ -43,7 +43,150 @@ function loginGo(){
 	}
 }
 
+// 이메일 정규식 확인, 이메일 중복 확인 
 function checkEmail(email){
+	if(checkRexEmail(email.value)){
+		let res = checkAccount(email.value);
+		if(res.status == "OK"){
+			email.classList.add('is-valid');
+			return true;
+		}else{
+			document.querySelector('.email_msg').innerText = res.msg;
+			email.classList.add('is-invalid');
+			return false;
+		}
+	}else{
+		email.classList.add('is-invalid');
+		return false;
+	}
+}
+function checkRexEmail(email){
 	const emailRegex = new RegExp('^[a-zA-Z0-9+-\_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$');
 	return emailRegex.test(email);
 }
+
+//닉네임 정규식 확인, 중복 확인 
+function checkNickname(nickname){
+	console.log('nick name : ',checkRexNickname(nickname.value))
+	if(checkRexNickname(nickname.value)){
+		let res = checkDuplicateNickname(nickname.value);
+		console.log('skdjalsdjs ', res)
+		if(res.status == "OK"){
+			nickname.classList.add('is-valid');
+			return true;
+		}else{
+			document.querySelector('.name_msg').innerText = res.msg;
+			nickname.classList.add('is-invalid');
+			return false;
+		}
+	}else{
+		mickname.classList.add('is-invalid');
+		return false;
+	}
+}
+function checkRexNickname(nickname){
+	const nicknameRegex = new RegExp('^[가-힣a-zA-Z0-9]{2,10}$');
+	return nicknameRegex.test(nickname);
+}
+
+function checkPassword(pass){
+	if(checkRexPassword(pass.value)){
+		pass.classList.add('is-valid');
+		return true;
+	}else{
+		pass.classList.add('is-invalid');
+		return false;
+	}
+}
+
+function checkRexPassword(pass){
+	const passwordRegex = new RegExp('^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$');
+	return passwordRegex.test(pass);
+}
+
+function checkAccount(email){
+	let res;
+	$.ajax({
+		url: "checkAccount.do",
+		type:'post',
+		data: {
+			"user_email" : email
+		},
+		dataType : "json",
+		async: false,
+		success : function(data){
+				res = data;
+		},
+		error : function(xhr){
+			console.log('error ',xhr.status)
+		}
+		
+	});
+	return res;
+}
+
+function checkDuplicateNickname(nickname){
+	let res;
+	$.ajax({
+		url: "checkDuplicateNickname.do",
+		type: 'post',
+		data: {
+			"nickname" : nickname
+		},
+		dataType : "json",
+		async: false,
+		success : function(data){
+			console.log('name ',data);
+			res = data;
+		},
+		error : function(xhr){
+			
+		}
+	});
+	return res;
+}
+
+function signUp(){
+	clearForm();
+	let email = document.querySelector('[name="user_email"]');
+	let nickname = document.querySelector('[name="nickname"]');
+	let pass = document.querySelector('[name="password"]');
+	
+	
+	if(checkEmail(email) && checkNickname(nickname) && checkPassword(pass)){
+		let signForm = $('[role="signUpForm"]').serialize();
+		console.log('sign form ', signForm);
+		$.ajax({
+			url : "signUp.do",
+			data : signForm,
+			type : 'post',
+			dataType : 'json',
+			success : function(data){
+				console.log('sign up ', data)
+				if(data.status == "OK"){
+					alert(data.msg);
+					location.href = "loginForm.do";
+				}else{
+					alert("현재 시스템이 정상적으로 동작하지않습니다.");
+				}
+			},
+			error : function(xhr){
+				
+			}
+		});
+	}
+}
+
+function clearForm(){
+	document.querySelector('[name="user_email"]').classList.remove('is-invalid');
+	document.querySelector('[name="nickname"]').classList.remove('is-invalid');
+	document.querySelector('[name="password"]').classList.remove('is-invalid');
+	
+	document.querySelector('.email_msg').innerText = "";
+	document.querySelector('.name_msg').innerText = "";
+}
+
+
+
+
+

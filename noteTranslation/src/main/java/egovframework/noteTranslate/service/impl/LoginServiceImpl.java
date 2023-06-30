@@ -28,4 +28,26 @@ public class LoginServiceImpl implements LoginService {
 		return memberInfo;
 	}
 
+	@Override
+	public String checkAccount(MemberVO member) throws SQLException {
+		String res =  "";
+		res = (String)commonDAO.selectByPk("loginMapper.selectDuplicatedAccount", member);
+		return res;
+	}
+
+	@Override
+	public String checkDuplicatedNickname(MemberVO member) throws SQLException {
+		String res = "";
+		res = (String)commonDAO.selectByPk("loginMapper.selectDuplicatedNickname", member);
+		return res;
+	}
+
+	@Override
+	public int signUpMember(MemberVO member) throws SQLException, NoSuchAlgorithmException {
+		PasswordEncryption pwdEncrypt = new PasswordEncryption();
+		member.setPassword(pwdEncrypt.encrypt(member.getPassword()));
+		int res = commonDAO.update("loginMapper.insertMember", member);
+		return res;
+	}
+
 }
