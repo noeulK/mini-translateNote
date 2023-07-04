@@ -1,3 +1,5 @@
+
+
 function toggleEye(){
 	const svgIcon = document.querySelector('svg.icon');
 	let password = document.querySelector('[name="password"]');
@@ -20,20 +22,27 @@ function hidePassword(password){
 }
 
 function loginGo(){
-	let email = document.querySelector('[name="user_email"]').value;
+	let email = document.querySelector('[name="user_email"]');
 	//console.log(checkEmail(email));
-	if(checkRexEmail(email)){
+	console.log('loginGo');
+	console.log(checkRexEmail(email.value));
+	if(checkRexEmail(email.value)){
 		let loginForm = $('[role="loginForm"]').serialize();
 		$.ajax({
-			url : 'login/login.do',
+			url : '/login/login.do',
 			data : loginForm,
 			method: 'post',
 			dataType : 'json',
 			success : function(data){
-				console.log('go to the main page')
+				console.log('login go',data);
+				if(data.status == "OK"){
+					location.href = "/note/noteTranslateMain.do";
+				}else{
+					alert(data.msg);
+				}
 			},
 			error : function(xhr){
-				
+				console.log(xhr.status);
 			}
 		})
 	}else{
@@ -70,7 +79,6 @@ function checkNickname(nickname){
 	console.log('nick name : ',checkRexNickname(nickname.value))
 	if(checkRexNickname(nickname.value)){
 		let res = checkDuplicateNickname(nickname.value);
-		console.log('skdjalsdjs ', res)
 		if(res.status == "OK"){
 			nickname.classList.add('is-valid');
 			return true;
@@ -188,5 +196,14 @@ function clearForm(){
 
 
 
-
+function sendMailLink(){
+	let email = document.querySelector('[name="user_email"]');
+	if(checkRexEmail(email.value)){
+		email.classList.add('is-valid');
+		document.querySelector('[role="findPwdForm"]').submit();
+		
+	}else{
+		email.classList.add('is-invalid');
+	}
+}
 

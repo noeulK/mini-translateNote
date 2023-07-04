@@ -12,7 +12,7 @@
             <h2 class="card-title text-center mb-4" style="font-size:20px;">회원가입 </h2>
             <div class="mb-3">
               <label class="form-label">이메일 </label>
-              <input type="email" name="user_email" class="form-control" placeholder="abcd234translationNote.com">
+              <input type="email" name="user_email" class="form-control" placeholder="abcd234@translationNote.com">
               <span class="email_msg text-warning"></span>
             </div>
              <div class="mb-3">
@@ -39,7 +39,7 @@
           </div>
         </form>
         <div class="text-center text-muted mt-3">
-          계정이 있습니다.  <a href="login/loginForm.do" tabindex="-1">로그인하기 </a>
+          계정이 있습니다.  <a href="/login/loginForm.do" tabindex="-1">로그인하기 </a>
         </div>
       </div>
     </div>

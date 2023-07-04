@@ -14,4 +14,6 @@ public interface LoginService {
 	public String checkDuplicatedNickname(MemberVO member) throws SQLException;
 
 	public int signUpMember(MemberVO member) throws SQLException, NoSuchAlgorithmException;
+
+	public MemberVO getMember(MemberVO member) throws SQLException;
 }

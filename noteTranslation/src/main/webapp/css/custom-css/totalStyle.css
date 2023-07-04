@@ -12,3 +12,17 @@ body{
 .note-back{
 	background-color: rgb(252,236,151);
 }
+
+.nav-card{
+	border-radius: 50px 50px 50px 50px;
+	
+}
+
+.dash-card-margin{
+	margin-bottom: 10px;
+}
+
+.page-wrapping{
+	margin-left: 20px;
+	margin-right: 20px;
+}

@@ -36,5 +36,17 @@
 			,'Y'
 		)
 	</update>
+	
+	<update id="updateLastLoginDate" parameterType="member">
+		update note_user
+		   set last_login_date = now()
+		 where user_no = #{user_no}
+	</update>
+	
+	<select id="selectMemberByEmail" parameterType="member" resultType="member">
+		select *
+		  from note_user
+		 where user_email = #{user_email}
+	</select>
 
 </mapper>

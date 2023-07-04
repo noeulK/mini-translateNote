@@ -12,6 +12,7 @@ import egovframework.noteTranslate.service.MainService;
 import egovframework.rte.psl.dataaccess.util.EgovMap;
 
 @Controller
+@RequestMapping("/note/")
 public class MainController {
 	
 	private Logger logger = LoggerFactory.getLogger(this.getClass());

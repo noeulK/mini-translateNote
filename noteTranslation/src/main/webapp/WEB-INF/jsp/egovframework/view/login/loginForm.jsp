@@ -18,7 +18,7 @@
               <label class="form-label">
                 비밀번호 
                 <span class="form-label-description">
-                  <a href="./forgot-password.html">비밀번호 찾기 </a>
+                  <a href="/login/findPasswordForm.do">비밀번호 찾기 </a>
                 </span>
               </label>
               <div class="input-group input-group-flat">

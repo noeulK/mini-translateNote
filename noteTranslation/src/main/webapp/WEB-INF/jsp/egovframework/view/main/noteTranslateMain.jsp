@@ -1,21 +1,24 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/jsp/egovframework/view/cmmn/partial/header.jsp" %>
 
-<div class="page-wrapper page-wrapping">
+<div class="page-wrapper page-wrapping" >
 <div class="page-body wrapping-page">
 
-	<div class="containder-xl">
-		<div class="row row-cards">
-			<div class="col-md-6 col-lg-6">
-                <div class="card card-inactive body-top-navibar">
-                  <div class="card-body" style="padding: 10px;">
-                    <p id="today">2023 . 6 . 16 금요일</p>
+	<div class="containder-xl" >
+		<div class="row row-cards dash-card-margin">
+			<div class="col-md-6 col-lg-6" >
+                <div class="card card-inactive body-top-navibar nav-card ">
+                  <div class="card-body row" style="padding-left: 10%;">
+                    <div class="col-6">
+                    	<span class="text-center" id="today">2023 . 6 . 16 금요일</span>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="col-md-6 col-lg-6">
-                <div class="card body-top-navibar" style="background-color: rgb(256,182,36);">
-                  <div class="card-body row" style="padding-left: 10%;">
-                    <div class="col-3"><!-- Download SVG icon from http://tabler-icons.io/i/pencil -->
+            </div>
+            <div class="col-md-6 col-lg-6">
+                <div class="card body-top-navibar nav-card" style="background-color: rgb(256,182,36);">
+                  <div class="card-body row" style="padding-left:10%;">
+                    <div class="col-3 "><!-- Download SVG icon from http://tabler-icons.io/i/pencil -->
 						<span style="cursor:pointer;" onclick="writeNote()"><svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
 						<path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4"></path>
 						<line x1="13.5" y1="6.5" x2="17.5" y2="10.5"></line></svg>
@@ -35,7 +38,7 @@
 						<path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path></svg> 
 						내정보</span> 
 					</div>
-					<div class="col-3">
+					<div class="col-3 ">
 						<!-- Download SVG icon from http://tabler-icons.io/i/logout -->
 						<span style="cursor:pointer;"><svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
 						<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -45,11 +48,11 @@
 					</div>
                   </div>
                 </div>
-              </div>
+            </div>
 		</div>
 	</div>
 	
-	<div class="contatiner-xl body-card-button-tools">
+	<div class="contatiner-xl body-card-button-tools dash-card-margin">
 		<div class="col-md-12 col-lg-12">
                 <div class="card">
                   <div class="card-header">
