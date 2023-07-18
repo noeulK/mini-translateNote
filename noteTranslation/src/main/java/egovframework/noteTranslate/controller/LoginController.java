@@ -1,6 +1,9 @@
 package egovframework.noteTranslate.controller;
 
 
+import java.net.URLEncoder;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.annotation.Resource;
@@ -13,6 +16,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -20,7 +24,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import egovframework.noteTranslate.dto.MemberVO;
 import egovframework.noteTranslate.service.LoginService;
+import egovframework.noteTranslate.util.ApiNaverProfileAccess;
 import egovframework.noteTranslate.util.MimeAttachNotifier;
+import egovframework.rte.psl.dataaccess.util.EgovMap;
 
 @Controller
 @RequestMapping("/login/")
@@ -57,6 +63,65 @@ public class LoginController {
 			mav.addObject("msg", "이메일 혹은 비밀번호가 틀립니다. 정확히 확인 후 입력해주세요.");
 		}
 		return mav;
+	}
+	
+	@RequestMapping(value="/naverLogin.do")
+	public ResponseEntity<?> loginByNaverAPI(HttpServletRequest req) throws Exception{
+		String clientId = "Wa9BnzBoVbYT6Vy1bBDh";//애플리케이션 클라이언트 아이디값";
+	    String clientSecret = "jtNeArW0Ff";//애플리케이션 클라이언트 시크릿값";
+	    String code = req.getParameter("code");
+	    String state = req.getParameter("state");
+	    String redirectURI = URLEncoder.encode("http://localhost:8080/note/noteTranslateMain.do", "UTF-8");
+	    String apiURL = "https://nid.naver.com/oauth2.0/token?grant_type=authorization_code"
+	        + "&client_id=" + clientId
+	        + "&client_secret=" + clientSecret
+	        + "&redirect_uri=" + redirectURI
+	        + "&code=" + code
+	        + "&state=" + state;
+	    
+	    
+	    Map<String, String> resMap = loginService.figureoutResponse(apiURL);
+	    logger.info(resMap+"");
+	    String token = resMap.get("access_token"); // 네이버 로그인 접근 토큰;
+        String header = "Bearer " + token; // Bearer 다음에 공백 추가
+
+
+        String apiURL2 = "https://openapi.naver.com/v1/nid/me";
+
+
+        ApiNaverProfileAccess naverProfileAccess = new ApiNaverProfileAccess(token, header, apiURL2);
+        Map<String, String>requestHeaders = new HashMap<>();
+		requestHeaders.put("Authorization", header);
+        Map<String, Object> responseBody = naverProfileAccess.get(apiURL2,requestHeaders);
+        if(responseBody != null && !responseBody.isEmpty()) {
+        	MemberVO member = new MemberVO();
+        	member.setNickname((String) responseBody.get("nickname"));
+        	member.setUser_email((String)responseBody.get("email"));
+        	
+        	MemberVO memberRes = loginService.getMember(member);
+        	if(memberRes != null && !memberRes.getSns_join().equals("")) {
+        		logger.info("member not null");
+        		req.getSession().setAttribute("member", memberRes);
+        	}else {
+        		logger.info("member null");
+        		int res = loginService.signUpMemberBySNS(member);
+        		logger.info("sign sns : "+res);
+        		if(res > 0) {
+        			memberRes = loginService.getMember(member);
+        			(req.getSession()).setAttribute("member", memberRes);
+        			logger.info("done");
+        		}
+        	}
+        }
+        System.out.println(responseBody);
+        return ResponseEntity.status(HttpStatus.SEE_OTHER).header("Location", "/note/noteTranslateMain.do").build();
+       
+        
+	}
+	
+	@RequestMapping(value="/kakaoLogin.do")
+	public void loginByKakaoApi(EgovMap param, HttpServletRequest req) throws Exception{
+		logger.info("enter the kakaoLogin.do"+param);
 	}
 	
 	@RequestMapping(value="/signUpForm.do")
@@ -122,6 +187,7 @@ public class LoginController {
 			
 			Cookie cookie = new Cookie(key, memberInfo.getUser_email());
 			cookie.setMaxAge(24*60*60);
+			logger.info("쿠키 만료 설정 : "+cookie.getMaxAge());
 			res.addCookie(cookie);
 			
 			String text = memberInfo.getNickname()+"님께,<br>"
@@ -148,6 +214,35 @@ public class LoginController {
 	public String settingPasswordForm() {
 		String url = "/login/settingPasswordForm";
 		return url;
+	}
+	
+	@RequestMapping(value="/modifyPassword.do")
+	public ModelAndView modifyPassword(MemberVO member, HttpServletRequest req) throws Exception {
+		ModelAndView mav = new ModelAndView("jsonView");
+		Cookie[] cookies = req.getCookies();
+		logger.info("cookie");
+		if(cookies != null) {
+			logger.info("cookies are not expired");
+			for(int i = 0; i < cookies.length; i++) {
+				if((cookies[i].getValue()).indexOf("@") > 0) {
+					System.out.println("key: "+cookies[i].getName()+ "/ value: "+ cookies[i].getValue());
+					member.setUser_email(cookies[i].getValue());
+					loginService.modifyPassword(member);
+					mav.addObject("status", HttpStatus.OK);
+					mav.addObject("url", "loginForm.do");
+					mav.addObject("msg", "비밀번호가 성공적으로 변경되었습니다.");
+					break;
+				}else {
+					System.out.println("have not value");
+					mav.addObject("status", HttpStatus.BAD_REQUEST);
+					mav.addObject("msg", "해당 링크는 만료되었습니다.");
+				}
+			}
+		}
+		
+		
+		
+		return mav;
 	}
 	
 	

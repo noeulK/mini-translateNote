@@ -2,10 +2,25 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mainMapper">
 
-	<select id="select" resultType="egovMap">
+	<select id="selectVocaList" parameterType="member" resultType="voca">
+		SELECT A.NOTE_ID,
+		       B.NOTE_TITLE,
+		       COUNT(A.VOCA_ID) TOTAL_CNT,
+		       COUNT(CASE WHEN A.MEMORIZE_YN = 'Y' THEN 0 END) MEMORIZE_CNT,
+		       B.NOTE_UPDATE_DATE
+		  FROM NOTE_VOCABULARY A
+		  JOIN TRANSLATE_NOTE B
+		    ON A.NOTE_ID = B.NOTE_ID
+		 WHERE B.NOTE_UPDATE_DATE IS NOT null
+		   and a.reg_writer = #{user_no}
+		  group by a.note_id
+	</select>
+	
+	<select id="selectNoteList" parameterType="member" resultType="note">
 		select *
-		  from note_user
-		 where user_no = 4
+		  from translate_note
+		 where note_writer = #{user_no}
+		   and NOTE_UPDATE_DATE IS NOT null
 	</select>
 
 </mapper>

@@ -9,6 +9,7 @@ public class MemberVO {
 	private String nickname;
 	private Date last_login_date;
 	private String use_yn;
+	private String sns_join;
 	
 	public int getUser_no() {
 		return user_no;
@@ -46,11 +47,21 @@ public class MemberVO {
 	public void setUse_yn(String use_yn) {
 		this.use_yn = use_yn;
 	}
+	
+	
+	public String getSns_join() {
+		return sns_join;
+	}
+	public void setSns_join(String sns_join) {
+		this.sns_join = sns_join;
+	}
 	@Override
 	public String toString() {
 		return "MemberVO [user_no=" + user_no + ", user_email=" + user_email + ", password=" + password + ", nickname="
-				+ nickname + ", last_login_date=" + last_login_date + ", use_yn=" + use_yn + "]";
+				+ nickname + ", last_login_date=" + last_login_date + ", use_yn=" + use_yn + ", sns_join=" + sns_join
+				+ "]";
 	}
+	
 	
 	
 }

@@ -37,6 +37,22 @@
 		)
 	</update>
 	
+	<update id="insertMemberWithSNS" parameterType="member">
+		insert into note_user(
+			USER_NO
+			,USER_EMAIL
+			,NICKNAME
+			,USE_YN
+			,SNS_JOIN
+		)values(
+			nextval(user_no_seq)
+			,#{user_email}
+			,#{nickname}
+			,'Y'
+			,substring_index(substring_index(#{user_email}, '@',-1),'.',1)
+		)
+	</update>
+	
 	<update id="updateLastLoginDate" parameterType="member">
 		update note_user
 		   set last_login_date = now()
@@ -48,5 +64,11 @@
 		  from note_user
 		 where user_email = #{user_email}
 	</select>
+	
+	<update id="updatePasswordByEmail" parameterType="member">
+		update note_user
+		   set password = #{password}
+		 where user_email = #{user_email}
+	</update>
 
 </mapper>

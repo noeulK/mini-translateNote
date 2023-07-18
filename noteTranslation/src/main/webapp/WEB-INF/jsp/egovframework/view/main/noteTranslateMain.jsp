@@ -40,7 +40,7 @@
 					</div>
 					<div class="col-3 ">
 						<!-- Download SVG icon from http://tabler-icons.io/i/logout -->
-						<span style="cursor:pointer;"><svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+						<span style="cursor:pointer;" onclick="logout()"><svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
 						<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
 						<path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2"></path>
 						<path d="M7 12h14l-3 -3m0 6l3 -3"></path></svg> 
@@ -66,63 +66,39 @@
                     <table class="table card-table table-vcenter">
                       <tbody>
                       
-                      	
-                      
+                     <c:if test="${fn:length(vocaList) > 0}" >	
+                      <c:forEach var="voca" items="${vocaList }">
                       <tr>
                         <td class="w-1 pe-0">
                           <i class="fa-regular fa-circle fa-2xs"></i>
                         </td>
                         <td class="w-100">
                           <a href="javascript:void(0)" onclick="openVoca('42','Drivers notch up over 600 laps in Pirelli’s 2024 tyre test as Mick Schumacher makes Mercedes debut' )" class="text-reset">
-                          
-	                          
-	                          
-	                          	Drivers notch up over 600 laps in Pirelli’s 2024 tyre test as Mick Schumacher makes Mercedes debut
-	                          
-	                          	
+                          	${voca.note_title }
                           </a>
                         </td>
                         <td class="text-nowrap">
                           <a href="#" class="text-muted">
                             <!-- Download SVG icon from http://tabler-icons.io/i/check -->
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M5 12l5 5l10 -10"></path></svg>
-                            2/4
+                            ${voca.memorize_cnt }/${voca.total_cnt }
                           </a>
                         </td>
                         <td class="text-nowrap text-muted">
                           <!-- Download SVG icon from http://tabler-icons.io/i/calendar -->
                           <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><rect x="4" y="5" width="16" height="16" rx="2"></rect><line x1="16" y1="3" x2="16" y2="7"></line><line x1="8" y1="3" x2="8" y2="7"></line><line x1="4" y1="11" x2="20" y2="11"></line><line x1="11" y1="15" x2="12" y2="15"></line><line x1="12" y1="15" x2="12" y2="18"></line></svg>
-                          2023년 6월 8일 목요일
+                          ${voca.note_update_date_str }
                         </td>
                       </tr>
-                      
+                      </c:forEach>
+                      </c:if>
+                      <c:if test="${fn:length(vocaList) == 0 }">
                       <tr>
-                        <td class="w-1 pe-0">
-                          <i class="fa-regular fa-circle fa-2xs"></i>
-                        </td>
                         <td class="w-100">
-                          <a href="javascript:void(0)" onclick="openVoca('43','Lewis Hamilton says racist abuse suffered by Vinícius Jr. evokes painful memories' )" class="text-reset">
-                          
-	                          
-	                          
-	                          	Lewis Hamilton says racist abuse suffered by Vinícius Jr. evokes painful memories
-	                          
-	                          	
-                          </a>
-                        </td>
-                        <td class="text-nowrap">
-                          <a href="#" class="text-muted">
-                            <!-- Download SVG icon from http://tabler-icons.io/i/check -->
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M5 12l5 5l10 -10"></path></svg>
-                            2/4
-                          </a>
-                        </td>
-                        <td class="text-nowrap text-muted">
-                          <!-- Download SVG icon from http://tabler-icons.io/i/calendar -->
-                          <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><rect x="4" y="5" width="16" height="16" rx="2"></rect><line x1="16" y1="3" x2="16" y2="7"></line><line x1="8" y1="3" x2="8" y2="7"></line><line x1="4" y1="11" x2="20" y2="11"></line><line x1="11" y1="15" x2="12" y2="15"></line><line x1="12" y1="15" x2="12" y2="18"></line></svg>
-                          2023년 6월 8일 목요일
+		     				등록된 단어장이 없습니다.                      
                         </td>
                       </tr>
+                      </c:if>
                       
                       
                     </tbody></table>
@@ -136,79 +112,40 @@
 			<div class="expandable">
 				<div class="row">
 				
-				
-				
+				<c:if test="${fn:length(noteList) > 0 }">
+				<c:forEach var="note" items="${noteList }">
 					<div class="col-4">
 						<div class="card">
 							<div class="card-body">
 								<h3 class="card-title">
-								
-									
-									
-										toto&amp;apos;s car
-									
-								
+								<c:choose>
+									<c:when test="${fn:length(note.note_title) gt 60 }">
+										<c:out value="${fn:substring(note.note_title, 0, 59) }"/>....
+									</c:when>
+									<c:otherwise>
+										<c:out value="${note.note_title }"/>
+									</c:otherwise>
+								</c:choose>
 								</h3>
-								<div class="card-subtitle">2023년 6월 8일 목요일</div>
+								<div class="card-subtitle">${note.note_update_date_str }</div>
 								<p>
-								
-									
-										‘We’re going to get there’ – Wolff convinced Mercedes are now on the right path back to winning ways Mercedes brought a host of new upgrades for their car to Monaco – and though it’s far from the ideal track to assess their effectiveness, Toto Wolff is convinced his team are now moving in the right....
-									
-									
-								
+								<c:choose>
+									<c:when test="${fn:length(note.note_content) gt 200 }">
+										<c:out value="${fn:substring(note.note_content, 0, 199) }"/>....
+									</c:when>
+									<c:otherwise>
+										<c:out value="${note.note_content }"/>
+									</c:otherwise>
+								</c:choose>
 								</p>
 							</div>
 						</div>
 					</div>
-				
-					<div class="col-4">
-						<div class="card">
-							<div class="card-body">
-								<h3 class="card-title">
-								
-									
-										Drivers notch up over 600 laps in Pirelli’s 2024 tyre test as Mick Sc....
-									
-									
-								
-								</h3>
-								<div class="card-subtitle">2023년 6월 8일 목요일</div>
-								<p>
-								
-									
-										Ferrari and Mercedes’ drivers have notched up over 600 laps between them over the course of two days of lapping the Circuit de Barcelona-Catalunya – host of last weekend’s Spanish Grand Prix – as Pirelli tested a selection of proposed tyre compounds for the 2024 season. Ferrari’s Charles Leclerc an....
-									
-									
-								
-								</p>
-							</div>
-						</div>
-					</div>
-				
-					<div class="col-4">
-						<div class="card">
-							<div class="card-body">
-								<h3 class="card-title">
-								
-									
-										Lewis Hamilton says racist abuse suffered by Vinícius Jr. evokes pain....
-									
-									
-								
-								</h3>
-								<div class="card-subtitle">2023년 6월 8일 목요일</div>
-								<p>
-								
-									
-										Seven-time Formula One world champion Lewis Hamilton said Thursday that the racism suffered by Real Madrid forward Vinícius Jr. in Spain’s La Liga reminds him of his own career experiences of discrimination. “It’s devastating to think that in 2023 we’re still seeing these things and hearing these t....
-									
-									
-								
-								</p>
-							</div>
-						</div>
-					</div>
+				</c:forEach>
+				</c:if>	
+				<c:if test="${fn:length(noteList) == 0 }">
+					<div> 등록된 단어장이 없습니다. </div>
+				</c:if>
 				
 				</div>
 			</div>

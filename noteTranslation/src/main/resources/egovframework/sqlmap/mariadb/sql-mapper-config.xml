@@ -7,6 +7,8 @@
 		<typeAlias alias="member" type="egovframework.noteTranslate.dto.MemberVO"/>
 		<typeAlias alias="str" type="java.lang.String"/>
 		<typeAlias alias="int" type="java.lang.Integer"/>
+		<typeAlias alias="voca" type="egovframework.noteTranslate.dto.VocaVO"/>
+		<typeAlias alias="note" type="egovframework.noteTranslate.dto.NoteVO"/>
     </typeAliases>
    
     

@@ -15,10 +15,12 @@
 
 <!--  customizing CSS -->
 <link href="/css/custom-css/totalStyle.css" rel="stylesheet">
+<link href="/css/custom-css/loginStyle.css" rel="stylesheet">
 
 
 <!-- icon -->
 <script src="https://kit.fontawesome.com/0fd43a1793.js" crossorigin="anonymous"></script>
+
 
 <!-- jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
