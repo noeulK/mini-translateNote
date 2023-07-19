@@ -47,4 +47,6 @@ public class MainController {
 		mav.setViewName("/main/noteTranslateMain");
 		return mav;
 	}
+	
+	
 }

@@ -19,7 +19,7 @@
                 <div class="card body-top-navibar nav-card" style="background-color: rgb(256,182,36);">
                   <div class="card-body row" style="padding-left:10%;">
                     <div class="col-3 "><!-- Download SVG icon from http://tabler-icons.io/i/pencil -->
-						<span style="cursor:pointer;" onclick="writeNote()"><svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+						<span style="cursor:pointer;" onclick="location.href='writeNoteForm.do'"><svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
 						<path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4"></path>
 						<line x1="13.5" y1="6.5" x2="17.5" y2="10.5"></line></svg>
 						노트 쓰기 </span>
@@ -73,7 +73,7 @@
                           <i class="fa-regular fa-circle fa-2xs"></i>
                         </td>
                         <td class="w-100">
-                          <a href="javascript:void(0)" onclick="openVoca('42','Drivers notch up over 600 laps in Pirelli’s 2024 tyre test as Mick Schumacher makes Mercedes debut' )" class="text-reset">
+                          <a href="javascript:void(0)" onclick="openVoca(${voca.note_id },${voca.note_title } )" class="text-reset">
                           	${voca.note_title }
                           </a>
                         </td>
@@ -144,7 +144,7 @@
 				</c:forEach>
 				</c:if>	
 				<c:if test="${fn:length(noteList) == 0 }">
-					<div> 등록된 단어장이 없습니다. </div>
+					<div> 등록된 번역노트가 없습니다. </div>
 				</c:if>
 				
 				</div>

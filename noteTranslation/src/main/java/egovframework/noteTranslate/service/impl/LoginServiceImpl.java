@@ -91,26 +91,30 @@ public class LoginServiceImpl implements LoginService {
 	}
 
 	@Override
-	public Map<String, String> figureoutResponse(String apiURL) throws SQLException, IOException {
+	public Map<String, String> figureoutResponse(String apiURL) throws IOException {
 		Map<String, String> resMap = new HashMap<String, String>();
 		String [] resArr;
 		
 		URL url = new URL(apiURL);
 	    HttpURLConnection con = (HttpURLConnection)url.openConnection();
 	    con.setRequestMethod("GET");
+	    
 	    int responseCode = con.getResponseCode();
+	    
 	    BufferedReader br;
 	    if (responseCode == 200) { // 정상 호출
 	      br = new BufferedReader(new InputStreamReader(con.getInputStream()));
 	    } else {  // 에러 발생
 	      br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
 	    }
+	    
 	    String inputLine;
 	    StringBuilder res = new StringBuilder();
 	    while ((inputLine = br.readLine()) != null) {
 	      res.append(inputLine);
 	    }
 	    br.close();
+	    
 	    if (responseCode == 200) {
 	      String removeStr = res.toString().replaceAll("\"", "");
 	      System.out.println("1 "+removeStr);
@@ -124,6 +128,46 @@ public class LoginServiceImpl implements LoginService {
 	    }
 	    
 		return resMap;
+	}
+
+	@Override
+	public String getKakaoLoginToken(String apiURL) throws IOException {
+		logger.info("get kakao");
+		String accessToken = "";
+		
+		Map<String, String> resMap = new HashMap<String, String>();
+		String [] resArr;
+		
+		URL url = new URL(apiURL);
+	    HttpURLConnection con = (HttpURLConnection)url.openConnection();
+	    con.setRequestMethod("POST");
+	    con.setDoOutput(true);
+	    
+	    int responseCode = con.getResponseCode();
+	    BufferedReader br;
+	    if (responseCode == 200) { // 정상 호출
+	      br = new BufferedReader(new InputStreamReader(con.getInputStream()));
+	    } else {  // 에러 발생
+	      br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
+	    }
+	    
+	    String inputLine;
+	    StringBuilder res = new StringBuilder();
+	    while ((inputLine = br.readLine()) != null) {
+	      res.append(inputLine);
+	    }
+	    if(responseCode == 200) {
+	    	String removeStr = res.toString().replaceAll("\"", "");
+		      System.out.println("1 "+removeStr);
+		      resArr = removeStr.substring(1, removeStr.toString().length() - 1).split(",");
+		      System.out.println("2 "+Arrays.toString(resArr));
+		      for(String pair : resArr) {
+		    	  String [] parts = pair.split(":");
+		    	  resMap.put(parts[0].trim(), parts[1].trim());
+		      }
+	    }
+	    
+		return resMap.get("access_token");
 	}
 
 }

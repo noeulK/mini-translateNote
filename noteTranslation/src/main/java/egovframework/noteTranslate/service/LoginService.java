@@ -24,5 +24,7 @@ public interface LoginService {
 
 	public int modifyPassword(MemberVO member) throws SQLException, NoSuchAlgorithmException;
 
-	public Map<String, String> figureoutResponse(String apiURL) throws SQLException, MalformedURLException, IOException;
+	public Map<String, String> figureoutResponse(String apiURL) throws IOException;
+
+	public String getKakaoLoginToken(String apiURL)throws IOException;
 }

@@ -24,9 +24,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import egovframework.noteTranslate.dto.MemberVO;
 import egovframework.noteTranslate.service.LoginService;
-import egovframework.noteTranslate.util.ApiNaverProfileAccess;
+import egovframework.noteTranslate.util.ApiProfileAccess;
 import egovframework.noteTranslate.util.MimeAttachNotifier;
-import egovframework.rte.psl.dataaccess.util.EgovMap;
 
 @Controller
 @RequestMapping("/login/")
@@ -89,10 +88,10 @@ public class LoginController {
         String apiURL2 = "https://openapi.naver.com/v1/nid/me";
 
 
-        ApiNaverProfileAccess naverProfileAccess = new ApiNaverProfileAccess(token, header, apiURL2);
+        ApiProfileAccess naverProfileAccess = new ApiProfileAccess(token, header, apiURL2);
         Map<String, String>requestHeaders = new HashMap<>();
 		requestHeaders.put("Authorization", header);
-        Map<String, Object> responseBody = naverProfileAccess.get(apiURL2,requestHeaders);
+        Map<String, Object> responseBody = naverProfileAccess.get(requestHeaders);
         if(responseBody != null && !responseBody.isEmpty()) {
         	MemberVO member = new MemberVO();
         	member.setNickname((String) responseBody.get("nickname"));
@@ -120,8 +119,32 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value="/kakaoLogin.do")
-	public void loginByKakaoApi(EgovMap param, HttpServletRequest req) throws Exception{
-		logger.info("enter the kakaoLogin.do"+param);
+	public void loginByKakaoApi(String code, HttpServletRequest req) throws Exception{
+		logger.info("enter the kakaoLogin.do : "+code);
+		String clientId = "c8a6eafea2757a1f0e26ed382c83b215";//애플리케이션 클라이언트 아이디값";
+	    String state = req.getParameter("status");
+		String clientSecret = "mqKGpUgJqnoBmewf4Yoi3fq6Cq0QHxpt";
+	    String redirectURI = URLEncoder.encode("http://localhost:8080/login/kakaoLogin.do","UTF-8");
+	    String apiURL = "https://kauth.kakao.com/oauth/token?grant_type=authorization_code"
+	        + "&client_id=" + clientId
+	        + "&client_secret=" + clientSecret
+	        + "&redirect_uri=" + redirectURI
+	        + "&code=" + code
+	        + "&state=" + state;
+	    
+	    String accessToken = loginService.getKakaoLoginToken(apiURL);
+	    logger.info("kakao login service : "+accessToken);
+	    
+	    
+	     // 네이버 로그인 접근 토큰;
+        String header = "Bearer " +accessToken; // Bearer 다음에 공백 추가
+        String apiURL2 = "https://kapi.kakao.com/v2/user/me";
+        
+        ApiProfileAccess profileAccess = new ApiProfileAccess(accessToken, header, apiURL2);
+        Map<String, String>requestHeaders = new HashMap<>();
+		requestHeaders.put("Authorization", header);
+        Map<String, Object> responseBody = profileAccess.getResponseByKakao(requestHeaders);
+        logger.info("response kakao : "+responseBody);
 	}
 	
 	@RequestMapping(value="/signUpForm.do")
