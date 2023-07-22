@@ -1,0 +1,79 @@
+@charset "UTF-8";
+
+.ti {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.title_div {
+  position: relative;
+  width: 90%;
+  margin-left: 1%;
+  margin-top: 20px;
+  margin-bottom : 20px;
+}
+
+.title_input {
+  font-size: 15px;
+  color: #222222;
+  width: 90%;
+  border: none;
+  border-bottom: solid #aaaaaa 1px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  position: relative;
+  background: none;
+  z-index: 5;
+}
+
+.title_input::placeholder { color: #aaaaaa; }
+.title_input:focus { outline: none; }
+
+.title_span {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0%;  /* right로만 바꿔주면 오 - 왼 */
+  background-color: #666;
+  width: 0;
+  height: 2px;
+  border-radius: 2px;
+  transition: 0.5s;
+}
+
+.title_label {
+  position: absolute;
+  color: #aaa;
+  left: 10px;
+  font-size: 20px;
+  bottom: 8px;
+  transition: all .2s;
+}
+
+.title_input:focus ~ .title_label, .title_input:valid ~ .title_label {
+  font-size: 16px;
+  bottom: 40px;
+  color: #666;
+  font-weight: bold;
+}
+
+.title_input:focus ~ .title_span, .title_input:valid ~ .title_span {
+  width: 100%;
+}
+
+.note_content{
+	padding: 3%;
+    overflow-y: auto;
+    height: 350px;
+	line-height: 210%;	
+	overflow: scroll;
+}
+
+
+
+.word_span:hover{
+	border-bottom: 1px solid rgb(251,192,36);
+	box-shadow: inset 0 -2px 0 rgb(251,192,36);
+}
+

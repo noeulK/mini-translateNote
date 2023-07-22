@@ -24,7 +24,7 @@
 							<div class="col-6 form-selectgroup">
 								<label class="form-selectgroup-item">
                                 <input type="radio" name="icons" value="home" class="form-selectgroup-input" checked="">
-                                <span class="form-selectgroup-label">
+                                <span class="form-selectgroup-label" onclick="pasteText()">
                                 <!-- Download SVG icon from http://tabler-icons.io/i/file-import -->
 								<svg xmlns="http://www.w3.org/2000/svg" class="icon me-1" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M14 3v4a1 1 0 0 0 1 1h4" /><path d="M5 13v-8a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2h-5.5m-9.5 -2h7m-3 -3l3 3l-3 3" /></svg>
                                  가져오기 </span>
@@ -73,9 +73,29 @@
                             </div>
 	                  	</div>
 	                  	<div class="card-body">
-	                  		<div class="card-body markdown">
+	                  		<div class="col-12">
+	                  			<div class="ti title_div">
+								    <input class="ti title_input" name="note_title" type="text" required>
+								    <label class="ti title_label">제목 </label>
+								    <span class="ti title_span"></span>
+								</div>
 	                  		
-	                  		</div>
+			                    <div class="card note_content" id="note_content">
+			                      <div class="empty" >
+			                        <p class="empty-title">번역할 글이 없습니다. </p>
+			                        <p class="empty-subtitle text-muted">
+			                          가져오기 버튼을 클릭하여 클립보드에 복사된 텍스트를 가져옵니다. 
+			                        </p>
+			                        <div class="empty-action">
+			                          <a href="javascript:pasteText()" class="btn btn-primary">
+			                            <!-- Download SVG icon from http://tabler-icons.io/i/file-import -->
+								<svg xmlns="http://www.w3.org/2000/svg" class="icon me-1" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M14 3v4a1 1 0 0 0 1 1h4" /><path d="M5 13v-8a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2h-5.5m-9.5 -2h7m-3 -3l3 3l-3 3" /></svg>
+			                            가져오기 
+			                          </a>
+			                        </div>
+			                      </div>
+			                    </div>
+			                  </div>
 	                  	</div>
 					</form>
 				</div>
@@ -94,5 +114,8 @@
 
 </div>
 </div>
+
+
+<script src="/js/note.js"></script>
 
 <%@ include file="/WEB-INF/jsp/egovframework/view/cmmn/partial/footer.jsp" %>

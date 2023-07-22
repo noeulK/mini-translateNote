@@ -1,3 +1,4 @@
+<script src="/js/common.js"></script>	
 	</section>
 	<footer></footer>
 	<script src="/css/dist/js/demo.js"></script>
