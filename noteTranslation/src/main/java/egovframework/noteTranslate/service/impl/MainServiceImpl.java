@@ -21,6 +21,7 @@ import egovframework.noteTranslate.service.MainService;
 public class MainServiceImpl implements MainService{
 
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
+	
 	@Resource(name="commonDAO")
 	private CommonDAO commonDAO;
 	

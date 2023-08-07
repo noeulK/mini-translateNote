@@ -25,12 +25,7 @@
 
 <!-- jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 </head>
 <body class="theme-light" data-new-gr-c-s-check-load="14.1112.0" data-gr-ext-installed>
-	<a href="" class="d-block px-3 py-2 text-center text-bold text-black old-bv" style="background-color: rgb(6,11,73)">&nbsp;</a>
-	<header class="navbar navbar-expand navbar-dark flex-column text-black flex-md-row bd-navbar" style="background-color:white;">
-	  <div class="row" style="float:none; margin:0 auto;">
-	    <a href="/note/noteTranslateMain.do" class="navbar-brand navbar-brand-autodark"><img src="/images/egovframework/logo/noteLogoNName.png" height="55" alt=""></a>
-	  </div>
-	</header>
 	<section style="background-color:rgb(252,236,151);">

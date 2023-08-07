@@ -9,6 +9,7 @@
 		<typeAlias alias="int" type="java.lang.Integer"/>
 		<typeAlias alias="voca" type="egovframework.noteTranslate.dto.VocaVO"/>
 		<typeAlias alias="note" type="egovframework.noteTranslate.dto.NoteVO"/>
+		<typeAlias alias="askVO" type="egovframework.noteTranslate.dto.AskVO" />
 		
     </typeAliases>
    

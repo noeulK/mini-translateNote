@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="noteMapper">
+
+	<insert id="insertNoteDraft" parameterType="note">
+		insert into translate_note(
+			note_id
+			,note_content
+			,note_reg_date
+			,note_writer
+		)values(
+			nextval(note_id_seq)
+			,#{note_content}
+			,now()
+			,(select user_no
+			    from note_user
+			   where user_email =  #{note_writer})
+		)
+	</insert>
+	
+	<select id="selectNoteIdBymember" parameterType="note" resultType="int">
+		select max(note_id)
+		  from translate_note
+		 where note_writer = (select user_no
+							    from note_user
+							   where user_email =  #{note_writer})
+	</select>
+	
+	<update id="insertAskBoard" parameterType="askVO">
+		insert into ask_board(
+			ask_no
+			,note_id
+			,paragraph_id
+			,ask_comment
+			,ask_date
+			,ask_phrase
+		)values(
+			nextval(ask_no_seq)
+			,#{note_id}
+			,#{paragraph_id}
+			,#{ask_comment}
+			,now()
+			,#{ask_phrase}
+		)
+	</update>
+
+</mapper>
