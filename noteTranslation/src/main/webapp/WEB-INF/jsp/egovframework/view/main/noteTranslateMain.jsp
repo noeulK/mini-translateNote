@@ -19,28 +19,28 @@
                 <div class="card body-top-navibar nav-card" style="background-color: rgb(256,182,36);">
                   <div class="card-body row" style="padding-left:10%;">
                     <div class="col-3 "><!-- Download SVG icon from http://tabler-icons.io/i/pencil -->
-						<span style="cursor:pointer;" onclick="location.href='writeNoteForm.do'"><svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+						<span class="main-navbar" onclick="location.href='writeNoteForm.do'"><svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
 						<path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4"></path>
 						<line x1="13.5" y1="6.5" x2="17.5" y2="10.5"></line></svg>
 						노트 쓰기 </span>
 					</div>
 					<div class="col-3">
 					<!-- Download SVG icon from http://tabler-icons.io/i/clipboard-check -->
-						<span style="cursor:pointer;"><svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+						<span class="main-navbar" onclick="testVoca()"><svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
 						<path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2"></path>
 						<rect x="9" y="3" width="6" height="4" rx="2"></rect><path d="M9 14l2 2l4 -4"></path></svg>
 						단어 시험</span>
 					</div>
 					<div class="col-3">
 						<!-- Download SVG icon from http://tabler-icons.io/i/user -->
-						<span style="cursor:pointer;"><svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+						<span class="main-navbar" style="margin-left:9px;" onclick="myPage()"><svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
 						<path stroke="none" d="M0 0h24v24H0z" fill="none"></path><circle cx="12" cy="7" r="4"></circle>
 						<path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path></svg> 
 						내정보</span> 
 					</div>
 					<div class="col-3 ">
 						<!-- Download SVG icon from http://tabler-icons.io/i/logout -->
-						<span style="cursor:pointer;" onclick="logout()"><svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+						<span class="main-navbar" onclick="logout()"><svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
 						<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
 						<path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2"></path>
 						<path d="M7 12h14l-3 -3m0 6l3 -3"></path></svg> 

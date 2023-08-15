@@ -1,6 +1,7 @@
 package egovframework.noteTranslate.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -18,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import egovframework.noteTranslate.dto.AskVO;
 import egovframework.noteTranslate.dto.MemberVO;
+import egovframework.noteTranslate.dto.NoteDetailVO;
 import egovframework.noteTranslate.dto.NoteVO;
 import egovframework.noteTranslate.dto.VocaVO;
 import egovframework.noteTranslate.service.NoteService;
@@ -70,12 +72,18 @@ public class NoteController {
 	}
 	
 	@RequestMapping(value="/saveVoca.do")
-	public ModelAndView saveVoca(VocaVO voca) throws Exception {
+	public ModelAndView saveVoca(VocaVO voca, HttpServletRequest req) throws Exception {
 		ModelAndView mav = new ModelAndView("jsonView");
-		logger.info("yeah");
 		
-		logger.info("voca : "+voca);
+		MemberVO member = (MemberVO) req.getSession().getAttribute("member");
+		voca.setReg_writer(member.getUser_email());
 		
+		int res = noteService.saveVoca(voca);
+		if(res > 0) {
+			mav.addObject("status", HttpStatus.OK);
+		}else {
+			mav.addObject("status", HttpStatus.BAD_REQUEST);
+		}
 		return mav;
 	}
 	
@@ -95,6 +103,12 @@ public class NoteController {
 	    }
 	    
 	    return mav;
+	}
+	
+	@RequestMapping(value="/saveEachPhrase")
+	public void saveEachPhrase(List<NoteDetailVO> noteDetailList, HttpServletRequest req) throws Exception{
+		logger.info("save each phrease");
+		logger.info(noteDetailList.toString());
 	}
 	
 	

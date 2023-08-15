@@ -43,5 +43,25 @@
 			,#{ask_phrase}
 		)
 	</update>
+	
+	<update id="insertVoca" parameterType="voca">
+		insert into note_vocabulary(
+			note_id
+			,voca_id
+			,voca_word
+			,voca_meaning
+			,reg_writer
+			,memorize_yn
+		)values(
+			#{note_id}
+			,nextval(voca_id_seq)
+			,#{voca_word}
+			,#{voca_meaning}
+			,(select user_no
+				from note_user
+			   where user_email = #{reg_writer})
+			,'N'
+		)
+	</update>
 
 </mapper>

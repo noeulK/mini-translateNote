@@ -1,12 +1,35 @@
 /**
  * 
  */
-let hover_var = false;
+
 let phrase_var = false;
 let bracket_var = false;
+let toolFlag = false;
+document.addEventListener('DOMContentLoaded', function() {
+    var checkboxes = document.querySelectorAll('[name="icons"]');
+
+    checkboxes.forEach(function(checkbox) {
+        checkbox.addEventListener('change', function() {
+            if (this.checked) {
+            	console.log(this.value);
+				toolFlag = true;
+            	clickedBtn(this.value);
+                checkboxes.forEach(function(otherCheckbox) {
+                    if (otherCheckbox !== checkbox) {
+                        otherCheckbox.checked = false;
+                    }
+                });
+            }else{
+	console.log('why is here?')
+            	toolFlag = false;
+            }
+        });
+    });
+});
 
 function clickSpan(e){
 	let selectedWord = e.innerText.trim();
+	
 	let noteId = document.querySelector('[name="note_id"]').value;
 	console.log(selectedWord);
 	openNewWindow('/note/vocabularyForm.do?word='+encodeURIComponent(selectedWord)+'&noteId='+encodeURIComponent(noteId), '단어장 등록 ');
@@ -57,13 +80,15 @@ function drawRectangle(e){
 }
 
 function clickedBtn(n){
-	hover_var = wordHoverFlad(hover_var);
+	console.log(n);
+	console.log(toolFlag);
+
 	var spans = document.getElementsByClassName('word_span');
-	if(hover_var){
+	if(toolFlag){
 		for(var span of spans){
 			span.classList.add('hover_on');
 			span.onclick = function() {
-				switch(n){
+				switch(parseInt(n)){
 					case 1: clickSpan(this); break;
 					case 2: putInBracket(this); break;
 					case 3: slashed(this); break;
@@ -84,11 +109,3 @@ function clickedBtn(n){
 	
 }
 
-function wordHoverFlad(flag){
-	if(flag){
-		flag = false;
-	}else{
-		flag = true;
-	}
-	return flag;
-}

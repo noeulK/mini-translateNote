@@ -15,6 +15,7 @@ public class VocaVO {
 	private String voca_meaning;
 	private String reg_writer;
 	private String memorize_yn;
+	private String pos;
 	public int getNote_id() {
 		return note_id;
 	}
@@ -81,14 +82,21 @@ public class VocaVO {
 	public void setMemorize_yn(String memorize_yn) {
 		this.memorize_yn = memorize_yn;
 	}
+	public String getPos() {
+		return pos;
+	}
+	public void setPos(String pos) {
+		this.pos = pos;
+	}
 	@Override
 	public String toString() {
 		return "VocaVO [note_id=" + note_id + ", note_title=" + note_title + ", total_cnt=" + total_cnt
 				+ ", memorize_cnt=" + memorize_cnt + ", note_update_date=" + note_update_date
 				+ ", note_update_date_str=" + note_update_date_str + ", voca_id=" + voca_id + ", voca_word=" + voca_word
 				+ ", voca_meaning=" + voca_meaning + ", reg_writer=" + reg_writer + ", memorize_yn=" + memorize_yn
-				+ "]";
+				+ ", pos=" + pos + "]";
 	}
+	
 	
 	
 	

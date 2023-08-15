@@ -32,21 +32,21 @@
 						<div class="card-header">
 							<div class="col-6 form-selectgroup">
 								<label class="form-selectgroup-item">
-                                <input type="button" name="icons" value="user" class="form-selectgroup-input">
+                                <input type="button" value="user" class="form-selectgroup-input">
                                 <span class="form-selectgroup-label" onclick="pasteText()">
                                 <!-- Download SVG icon from http://tabler-icons.io/i/file-import -->
 								<svg xmlns="http://www.w3.org/2000/svg" class="icon me-1" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M14 3v4a1 1 0 0 0 1 1h4" /><path d="M5 13v-8a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2h-5.5m-9.5 -2h7m-3 -3l3 3l-3 3" /></svg>
                                  가져오기 </span>
                               </label>	
 							  <label class="form-selectgroup-item" >
-                                <input type="checkbox" name="icons" value="home" class="form-selectgroup-input" >
-                                <span class="form-selectgroup-label" onclick="clickedBtn(1)">
+                                <input type="checkbox" name="icons" value="1" class="form-selectgroup-input" >
+                                <span class="form-selectgroup-label" >
                                 <!-- Download SVG icon from http://tabler-icons.io/i/letter-case -->
 								<svg xmlns="http://www.w3.org/2000/svg" class="icon me-1" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="17.5" cy="15.5" r="3.5" /><path d="M3 19v-10.5a3.5 3.5 0 0 1 7 0v10.5" /><path d="M3 13h7" /><path d="M21 12v7" /></svg>
                                  단어 등록 </span>
                               </label>	
                               <label class="form-selectgroup-item" >
-                                <input type="button" name="icons" value="home" class="form-selectgroup-input" >
+                                <input type="button" value="home" class="form-selectgroup-input" >
                                 <span class="form-selectgroup-label" onclick="clickedPharase()">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon me-1 icon-tabler icon-tabler-message-question" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M8 9h8"></path><path d="M8 13h6"></path><path d="M14 18h-1l-5 3v-3h-2a3 3 0 0 1 -3 -3v-8a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v4.5"></path><path d="M19 22v.01"></path><path d="M19 19a2.003 2.003 0 0 0 .914 -3.782a1.98 1.98 0 0 0 -2.414 .483"></path></svg>
                                  물어보기  </span>
@@ -54,34 +54,34 @@
                             </div>  					
 	                    	<div class=" col-6 form-selectgroup">
                               <label class="form-selectgroup-item">
-                                <input type="checkbox" name="icons" value="home" class="form-selectgroup-input" >
-                                <span class="form-selectgroup-label" onclick="clickedBtn(2)">
+                                <input type="checkbox" name="icons" value="2" class="form-selectgroup-input" >
+                                <span class="form-selectgroup-label" >
                                  <!-- Download SVG icon from http://tabler-icons.io/i/parentheses -->
 								<svg xmlns="http://www.w3.org/2000/svg" class="icon me-1" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 4a12.25 12.25 0 0 0 0 16" /><path d="M17 4a12.25 12.25 0 0 1 0 16" /></svg>
                                  괄호 </span>
                               </label>
                               <label class="form-selectgroup-item">
-                                <input type="checkbox" name="icons" value="home" class="form-selectgroup-input" >
-                                <span class="form-selectgroup-label" onclick="clickedBtn(3)">
+                                <input type="checkbox" name="icons" value="3" class="form-selectgroup-input" >
+                                <span class="form-selectgroup-label" >
 								 <i class="fa-solid fa-slash fa-rotate-90"></i>
                                  빗금  </span>
                               </label>
                               <label class="form-selectgroup-item">
-                                <input type="checkbox" name="icons" value="user" class="form-selectgroup-input">
-                                <span class="form-selectgroup-label" onclick="clickedBtn(4)">
+                                <input type="checkbox" name="icons" value="4" class="form-selectgroup-input">
+                                <span class="form-selectgroup-label" >
                                 <!-- Download SVG icon from http://tabler-icons.io/i/triangle -->
 								<svg xmlns="http://www.w3.org/2000/svg" class="icon me-1" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 19h14a2 2 0 0 0 1.84 -2.75l-7.1 -12.25a2 2 0 0 0 -3.5 0l-7.1 12.25a2 2 0 0 0 1.75 2.75" /></svg>
                                 세모 </span>
                               </label>
                               <label class="form-selectgroup-item">
-                                <input type="checkbox" name="icons" value="circle" class="form-selectgroup-input">
-                                <span class="form-selectgroup-label" onclick="clickedBtn(5)"><!-- Download SVG icon from http://tabler-icons.io/i/circle -->
+                                <input type="checkbox" name="icons" value="5" class="form-selectgroup-input">
+                                <span class="form-selectgroup-label" ><!-- Download SVG icon from http://tabler-icons.io/i/circle -->
                                   <svg xmlns="http://www.w3.org/2000/svg" class="icon me-1" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><circle cx="12" cy="12" r="9"></circle></svg>
                                   동그라미 </span>
                               </label>
                               <label class="form-selectgroup-item">
-                                <input type="checkbox" name="icons" value="square" class="form-selectgroup-input">
-                                <span class="form-selectgroup-label" onclick="clickedBtn(6)"><!-- Download SVG icon from http://tabler-icons.io/i/square -->
+                                <input type="checkbox" name="icons" value="6" class="form-selectgroup-input">
+                                <span class="form-selectgroup-label" ><!-- Download SVG icon from http://tabler-icons.io/i/square -->
                                   <svg xmlns="http://www.w3.org/2000/svg" class="icon me-1" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><rect x="4" y="4" width="16" height="16" rx="2"></rect></svg>
                                   네모 </span>
                               </label>
@@ -130,7 +130,6 @@
 
 </div>
 </div>
-
 
 <script src="/js/note/note.js"></script>
 <script src="/js/note/toolbar.js"></script>

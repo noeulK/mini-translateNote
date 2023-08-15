@@ -1,0 +1,42 @@
+@charset "UTF-8";
+
+.pos-table table{
+	border-collapse : collapse;
+	font-size : 13px;
+	width : 100%;
+	color : #aaa;
+}
+.pos-table td{
+	border-left : 1px solid grey;
+	padding: 0px 2px 0px 2.8px;
+}
+.pos-table th:first-child, td:first-child {
+    border-left: none;
+}
+.clicked-td{
+	color :  #222222;
+}
+
+.blur li::marker{
+	color: #aaa;
+}
+.focus li::marker{
+	color: #222222;
+}
+
+.ex-sentence{
+	outline:none;
+	border:none;
+	border-bottom : 1px solid #aaa ;
+	width : 100%;
+	background: transparent;
+}
+.on{
+	outline:none;
+	border:none;
+	border-bottom : 1.3px solid black;
+	width : 100%;
+	background: transparent;
+}
+
+
